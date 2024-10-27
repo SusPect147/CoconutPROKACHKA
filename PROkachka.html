@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Монетки</title>
+<style>
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Для центрирования по горизонтали */
+  justify-content: center; /* Для центрирования по вертикали */
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, rgb(11, 206, 255), rgb(243, 11, 212));
+  transition: background 0.5s ease;
+  user-select: none;
+  overflow: hidden; 
+}
+
+#message-container {
+  position: fixed;
+  top: 100px; /* Положение блока сообщений */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+#coin {
+  font-size: 24px;
+  margin-bottom: 10px; /* Установите желаемый отступ */
+  transition: color 0.5s ease;
+}
+
+#upgradeInfo {
+  margin-bottom: 10px; /* Установите желаемый отступ */
+}
+
+button, .clickc, .thema {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  margin: 10px; /* Увеличен отступ между кнопками */
+  max-width: 90%;
+  box-sizing: border-box; 
+}
+
+.clickc {
+  margin-top: 20px; /* Уменьшен отступ, для расположения ближе к остальным элементам */
+}
+
+button:hover {
+  background-color: #555;
+}
+
+.lucky {
+  margin-top: 20px; /* Уменьшен отступ для более компактного расположения */
+}
+
+.clicke {
+  margin-top: 20px; /* Уменьшен отступ для более компактного расположения */
+}
+
+/* Добавление родительского контейнера для контроля положения элементов */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрировать элементы в контейнере */
+  justify-content: center;
+  height: 100vh; /* Занимает 100% высоты экрана */
+}
+
+.container228 {
+            display: flex;
+            height: var(--container-height);
+            justify-content: center;
+            align-items: center;
+            padding: 6px;
+            border: 5px solid transparent; 
+            background: rgb(255, 255, 255);
+            background-clip: padding-box, border-box;
+            border-image: linear-gradient(to right, #3107eb, #7a0470) 1;
+            margin-top: 320px;
+        }
+.button228 {
+            background-color: transparent;
+            border-radius: 5px;
+            height: var(--button-height);
+            cursor: pointer;
+            margin: 0 5px;
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            transition: brightness 0.2s;
+}
+.button228 img {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            transition: transform 0.2s;
+            border-radius: 10px;
+}
+.button228:hover img {
+            transform: scale(1.1);
+}
+.button228-text {
+            margin-top: 2.5px;
+            font-size: 15px;
+            color: rgb(35, 139, 230);
+            font-family: 'Borsok', sans-serif;
+}
+.mini-buttons {
+            display: none; 
+            flex-direction: row; 
+            margin-bottom: 1px;
+}
+.mini-button {
+            background-color: #9370DB;
+            border: none; 
+            border-radius: 5px;
+            padding: 2px 5px; 
+            margin: 0 2px;
+            cursor: pointer;
+            color: white;
+            transition: filter 0.2s; 
+            height: auto; 
+}
+#inventory, .shop1, .inventory1 {
+  position: absolute;
+  top: 150;
+  left: 50%;
+  top: 50.5%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 40px;
+  border-radius: 10px;
+  z-index: 1;
+  display: none;
+}
+  .item {
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .item img {
+    width: 50px;
+    height: 50px;
+  }
+  .item span {
+    display: block;
+    font-size: 12px;
+  }
+.skin1 {
+  width: 50px;
+  cursor: pointer;
+  margin: 10px;
+}
+.skin2 {
+  width: 50px;
+  cursor: pointer;
+  margin: 10px;
+}
+.message-box1 {
+   margin: 10px;
+   display: none;
+}
+</style>
+</head>
+<body>
+<div id="message-container"></div>
+<div id="coin"> 🥥0</div>
+<lucky class="clickc" id="upgradeButton">Прокачать клик (+0.1 монета)</lucky>
+<div id="upgradeInfo">Стоимость прокачки: 100 монет</div>
+
+<button class="clickc" id="upgradeButton2">Прокачать удачу</button>
+<div id="upgradeInfo2">Стоимость прокачки: 100 монет</div>
+
+<div class="container228">
+  <div class="button228" onclick="toggleMiniButtons(this)">
+    <img src="menuchka.png" alt="Меню">
+    <div class="button228-text">Кокос</div>
+  </div>
+  <div class="button228" onclick="toggleMiniButtons(this)">
+      <img src="image1.jpg" alt="Подарки дня" id="dailyGift" onclick="getDailyGift()">
+      <div class="button228-text">Подарки</div>
+  </div>
+      <div class="button228" onclick="toggleMiniButtons(this)">
+          <img src="image2.jpg" alt="ПРОкачка">
+          <div class="button228-text">Магазин</div>
+      </div>
+      <div class="button228" onclick="toggleMiniButtons(this)">
+        <img src="image3.jpg" alt="Задания" id="taskButton">
+        <div class="button228-text">Квесты</div>
+    </div>
+    <div class="button228" onclick="toggleMiniButtons(this)">
+        <img src="image4.jpg" alt="Инвентарь">
+        <div class="button228-text">Рюкзак</div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="shop1" id="shop1">
+    <h2>Магазин</h2>
+    <img src="skin1.jpeg" class="skin1" data-price="100" alt="Skin 1">
+    <img src="skin2.jpeg" class="skin2" data-price="1000" alt="Skin 2">
+    <div class="message-box1" id="messageBox1"></div>
+    <button id="closeShopButton1">Закрыть магазин</button>
+</div>
+
+<div class="inventory1" id="inventory1">
+    <h2>Ваш Инвентарь</h2>
+    <div id="inventoryDisplay1"></div>
+    <button id="closeInventoryButton1">Закрыть инвентарь</button>
+</div>
+<script>
+function saveCoins() {
+localStorage.setItem('coinCount', coinCount);
+localStorage.setItem('clickValue', clickValue);
+localStorage.setItem('upgradePrice', upgradePrice);    // Сохраняем цену прокачки
+localStorage.setItem('upgradePrice2', upgradePrice2); // Сохраняем цену прокачки
+localStorage.setItem('skinbuying1', skinbuying1);
+localStorage.setItem('items', JSON.stringify(items));
+}
+
+function loadCoins() {
+coinCount = parseFloat(localStorage.getItem('coinCount')) || 0;
+clickValue = parseFloat(localStorage.getItem('clickValue')) || 1;
+upgradePrice = parseInt(localStorage.getItem('upgradePrice')) || 100; // Загружаем цену прокачки
+upgradePrice2 = parseInt(localStorage.getItem('upgradePrice2')) || 500; // Загружаем цену второй прокачки
+codeUsed1 = localStorage.getItem('codeUsed1') === 'true' || false;
+codeUsed2 = localStorage.getItem('codeUsed2') === 'true' || false;
+codeUsed3 = localStorage.getItem('codeUsed3') === 'true' || false;
+codeUsed4 = localStorage.getItem('codeUsed4') === 'true' || false;
+codeUsed5 = localStorage.getItem('codeUsed5') === 'true' || false;
+codeUsed6 = localStorage.getItem('codeUsed6') === 'true' || false;
+codeUsed7 = localStorage.getItem('codeUsed7') === 'true' || false;
+skinbuying = localStorage.getItem('codeUsed7') === 'true' || false;
+localStorage.setItem('skinbuying', skinbuying);coinDisplay.textContent = `🥥${coinCount.toFixed(1)}`;
+upgradeInfoDisplay.textContent = `Стоимость прокачки: ${upgradePrice} 🥥`;
+upgradeInfoDisplay2.textContent = `Стоимость прокачки: ${upgradePrice2} 🥥`;
+const storedItems = localStorage.getItem('items');
+return storedItems ? JSON.parse(storedItems) : [];
+}
+let coinCount = 0;
+let clickValue = 1;
+let upgradePrice = 100;
+let upgradePrice2 = 500;
+let rare =      0.01;
+let epic =      0.001;
+let mythic =    0.0001;
+let legendary = 0.00001;
+let secret =    0.000001;
+const coinDisplay = document.getElementById('coin');
+const coinImage = document.getElementById('coinImage');
+const themeButton = document.getElementById('themeButton');
+const upgradeButton = document.getElementById('upgradeButton');
+const upgradeButton2 = document.getElementById('upgradeButton2');
+const upgradeInfoDisplay = document.getElementById('upgradeInfo');
+const upgradeInfoDisplay2 = document.getElementById('upgradeInfo2');
+loadCoins();
+
+upgradeButton.addEventListener('click', () => {
+  if (coinCount >= upgradePrice) {
+    coinCount -= upgradePrice;
+    clickValue += 0.1;
+    upgradePrice *= 2;
+    coinDisplay.textContent = `🥥${coinCount.toFixed(1)}`;
+    upgradeInfoDisplay.textContent = `Стоимость прокачки: ${upgradePrice} 🥥`;
+    saveCoins();
+  }
+});
+
+upgradeButton2.addEventListener('click', () => {
+  if (coinCount >= upgradePrice2) {
+    coinCount -= upgradePrice2;
+    upgradePrice2 *= 2;
+    // Увеличение редких значений
+    rare *= 1.2 ;
+    epic *= 1.2 ;
+    mythic *= 1.2 ;
+    legendary *= 1.2 ;
+    secret *= 1.2 ;  
+    coinDisplay.textContent = `🥥${coinCount.toFixed(1)}`;
+    upgradeInfoDisplay2.textContent = `Стоимость прокачки: ${upgradePrice2} 🥥`; // Изменение информации о стоимости
+    saveCoins();
+  }
+});
+function toggleMiniButtons(button228) {
+        // Убираем мини-кнопки от всех кнопок
+        document.querySelectorAll('.button228.active').forEach(function(b) {
+            if (b !== button228) {
+                b.classList.remove('active');
+                b.querySelector('.mini-buttons').style.display = 'none';
+            }
+        });
+        // Переключаем мини-кнопки для выбранной кнопки
+        const miniButtons = button228.querySelector('.mini-buttons');
+        miniButtons.style.display = miniButtons.style.display === 'none' ? 'flex' : 'none';
+        button228.classList.toggle('active');
+}
+document.getElementById('menu').addEventListener('click', function() {
+        // Замените URL ниже на нужный Вам адрес
+        window.location.href = 'http://127.0.0.1:5500/index.html';
+});
+
+</script>
+</body>
+</html>
