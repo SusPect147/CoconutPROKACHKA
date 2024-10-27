@@ -191,7 +191,7 @@ button:hover {
 
 <div class="container228">
   <div class="button228" onclick="toggleMiniButtons(this)">
-    <img src="menuchka.png" alt="Меню">
+    <img src="menuchka.png" alt="Меню" id="KOKOS">
     <div class="button228-text">Кокос</div>
   </div>
   <div class="button228" onclick="toggleMiniButtons(this)">
@@ -287,6 +287,10 @@ upgradeButton.addEventListener('click', () => {
   }
 });
 
+document.getElementById('KOKOS').addEventListener('click', function() {
+        window.location.href = 'https://suspect147.github.io/CoconutClickerTelegram/';
+});
+  
 upgradeButton2.addEventListener('click', () => {
   if (coinCount >= upgradePrice2) {
     coinCount -= upgradePrice2;
