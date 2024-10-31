@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Монетки</title>
 <style>
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Для центрирования по горизонтали */
-  justify-content: center; /* Для центрирования по вертикали */
-  height: 100vh;
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, rgb(11, 206, 255), rgb(243, 11, 212));
-  transition: background 0.5s ease;
-  user-select: none;
-  overflow: hidden; 
-}
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom,#833c03, #070006);
+      transition: background 0.5s ease;
+      user-select: none;
+      overflow: hidden;
+    }
 
 #message-container {
   position: fixed;
@@ -90,7 +90,7 @@ button:hover {
             border: 5px solid transparent; 
             background: rgb(255, 255, 255);
             background-clip: padding-box, border-box;
-            border-image: linear-gradient(to right, #3107eb, #7a0470) 1;
+            border-image: linear-gradient(to right, #ffa55c, #ff7300) 1;
             margin-top: 320px;
         }
 .button228 {
@@ -191,7 +191,7 @@ button:hover {
 
 <div class="container228">
   <div class="button228" onclick="toggleMiniButtons(this)">
-    <img src="menuchka.png" alt="Меню" id="KOKOS">
+    <img src="menuchka.png" alt="Меню">
     <div class="button228-text">Кокос</div>
   </div>
   <div class="button228" onclick="toggleMiniButtons(this)">
@@ -287,10 +287,6 @@ upgradeButton.addEventListener('click', () => {
   }
 });
 
-document.getElementById('KOKOS').addEventListener('click', function() {
-        window.location.href = 'https://suspect147.github.io/CoconutClickerTelegram/';
-});
-  
 upgradeButton2.addEventListener('click', () => {
   if (coinCount >= upgradePrice2) {
     coinCount -= upgradePrice2;
