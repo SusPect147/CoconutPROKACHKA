@@ -13,11 +13,11 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, rgb(228, 207, 162), rgb(0, 0, 0));
+            background: linear-gradient(to bottom, rgb(34, 34, 34), rgb(0, 0, 0));
             transition: background 0.5s ease;
             user-select: none;
             overflow: hidden;
-            color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
             font-weight: 550;
         }
     
@@ -48,17 +48,16 @@
 button, .clickc, .thema {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #333;
+  background-image: linear-gradient(to right, #63594d, #c2a993); /* Добавлено свойство background-image */
   color: #fff;
   border: none;
-  border-radius: 40px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.5s ease;
-  margin: 10px; /* Увеличен отступ между кнопками */
+  margin: 10px;
   max-width: 90%;
   box-sizing: border-box; 
 }
-
 .clickc {
   margin-top: 20px; /* Уменьшен отступ, для расположения ближе к остальным элементам */
 }
@@ -91,7 +90,7 @@ button:hover {
       align-items: center;
       padding: 6px;
       border: 5px solid transparent;
-      background: linear-gradient(to right, #ffffff, #b4b4b4);
+      background: linear-gradient(to bottom, #ffffff, #b4b4b4);
       background-clip: padding-box, border-box;
       margin-top: 100px;
       border-radius: 14px;
@@ -129,7 +128,6 @@ button:hover {
       margin-top: 2.5px;
       font-size: 15px;
       color: rgb(0, 0, 0);
-
 
     }
     
@@ -199,7 +197,7 @@ button:hover {
 <lucky class="clickc" id="upgradeButton">Прокачать клик (+0.1 монета)</lucky>
 <div id="upgradeInfo">Стоимость прокачки: 100 монет</div>
 
-<button class="clickc" id="upgradeButton2">Прокачать удачу</button>
+<button class="clickc" id="upgradeButton2">Прокачать удачу (x1.2 удачи)</button>
 <div id="upgradeInfo2">Стоимость прокачки: 100 монет</div>
 
 <div class="container228">
@@ -282,7 +280,7 @@ return storedItems ? JSON.parse(storedItems) : [];
 let coinCount = 0;
 let clickValue = 1;
 let upgradePrice = 100;
-let upgradePrice2 = 500;
+let upgradePrice2 = 100;
 let rare =      0.01;
 let epic =      0.001;
 let mythic =    0.0001;
@@ -295,15 +293,17 @@ const upgradeButton = document.getElementById('upgradeButton');
 const upgradeButton2 = document.getElementById('upgradeButton2');
 const upgradeInfoDisplay = document.getElementById('upgradeInfo');
 const upgradeInfoDisplay2 = document.getElementById('upgradeInfo2');
+const luckLevelDisplay = document.getElementById('luckLevel');
+let luckLevel = parseInt(localStorage.getItem('luckLevel')) || 1;
 loadCoins();
 
 upgradeButton.addEventListener('click', () => {
   if (coinCount >= upgradePrice) {
     coinCount -= upgradePrice;
     clickValue += 0.1;
-    upgradePrice *= 2;
+    upgradePrice *= 1.3;
     coinDisplay.textContent = `🥥${coinCount.toFixed(0)}`;
-    upgradeInfoDisplay.textContent = `Стоимость прокачки: ${upgradePrice} 🥥`;
+    upgradeInfoDisplay.textContent = `Стоимость прокачки: ${upgradePrice.toFixed(0)} 🥥`;
     saveCoins();
   }
 });
@@ -311,18 +311,16 @@ upgradeButton.addEventListener('click', () => {
 upgradeButton2.addEventListener('click', () => {
   if (coinCount >= upgradePrice2) {
     coinCount -= upgradePrice2;
-    upgradePrice2 *= 2;
-    // Увеличение редких значений
-    rare *= 1.2 ;
-    epic *= 1.2 ;
-    mythic *= 1.2 ;
-    legendary *= 1.2 ;
-    secret *= 1.2 ;  
+    luckLevel *= 1.2;
+    upgradePrice2 *= 1.3;
     coinDisplay.textContent = `🥥${coinCount.toFixed(0)}`;
-    upgradeInfoDisplay2.textContent = `Стоимость прокачки: ${upgradePrice2} 🥥`; // Изменение информации о стоимости
+    upgradeInfoDisplay2.textContent = `Стоимость прокачки: ${upgradePrice2.toFixed(0)} 🥥`;
     saveCoins();
   }
 });
+
+
+
 function toggleMiniButtons(button228) {
         // Убираем мини-кнопки от всех кнопок
         document.querySelectorAll('.button228.active').forEach(function(b) {
