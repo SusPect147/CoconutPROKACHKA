@@ -5,19 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Монетки</title>
 <style>
-   body {
+    body {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            margin: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, rgb(34, 34, 34), rgb(0, 0, 0));
+            height: 90vh;
+            background: linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 255, 255));
             transition: background 0.5s ease;
             user-select: none;
             overflow: hidden;
-            color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
             font-weight: 550;
         }
     
@@ -36,14 +35,15 @@
 }
 
 #coin {
-  font-size: 24px;
-  margin-bottom: 232px; /* Установите желаемый отступ */
-  transition: color 0.5s ease;
-}
-
-#upgradeInfo {
-  margin-bottom: 10px; /* Установите желаемый отступ */
-}
+      font-size: 24px;
+      transition: color 0.5s ease;
+      margin-top: -10%;
+    }
+    
+    #upgradeInfo {
+      transition: color 0.5s ease;
+      margin-bottom: -px;
+    }
 
 button, .clickc, .thema {
   padding: 10px 20px;
@@ -84,70 +84,75 @@ button:hover {
 }
 
 .container228 {
-      display: flex;
-      height: var(--container-height);
-      justify-content: center;
-      align-items: center;
-      padding: 6px;
-      border: 5px solid transparent;
-      background: linear-gradient(to bottom, #ffffff, #b4b4b4);
-      background-clip: padding-box, border-box;
-      margin-top: 100px;
-      border-radius: 14px;
+    position: fixed;
+    bottom: 2%;
+    left: 0;
+    width: 98%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 90px;
+    border: 5px solid transparent;
+    background: rgba(10, 7, 7, 0.5);
+    backdrop-filter: blur(10px);
+    background-clip: padding-box, border-box;
+    border-radius: 35px;
+    margin: 0;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
 
-    }
-    
-    .button228 {
-      background-color: transparent;
-      border-radius: 5px;
-      height: var(--button-height);
-      cursor: pointer;
-      margin: 0 5px;
-      flex-direction: column;
-      display: flex;
-      align-items: center;
-      text-align: center;
-      transition: brightness 0.2s;
- 
-    }
-    
-    .button228 img {
-      width: 30px;
-      height: 30px;
-      border-radius: 5px;
-      transition: transform 0.2s;
-      border-radius: 10px;
+.button228 {
+    background-color: transparent;
+    border-radius: 5px;
+    height: var(--button-height);
+    cursor: pointer;
+    margin: 0 5px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    transition: brightness 0.2s;
+}
 
-    }
-    
-    .button228:hover img {
-      transform: scale(1.1);
-    }
-    
-    .button228-text {
-      margin-top: 2.5px;
-      font-size: 15px;
-      color: rgb(0, 0, 0);
+.button228 img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    transition: transform 0.2s;
+    border-radius: 10px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
 
-    }
-    
-    .mini-buttons {
-      display: none;
-      flex-direction: row;
-      margin-bottom: 1px;
-    }
-    
-    .mini-button {
-      background-color: #59a9c2;
-      border: none;
-      border-radius: 5px;
-      padding: 2px 5px;
-      margin: 0 2px;
-      cursor: pointer;
-      color: white;
-      transition: filter 0.2s;
-      height: auto;
-    }
+.button228:hover img {
+    transform: scale(1.1);
+}
+
+.button228-text {
+    margin-top: 2px;
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+}
+
+.mini-buttons {
+    display: none;
+    flex-direction: row;
+    margin-bottom: 1px;
+}
+
+.mini-button {
+    background-color: #59a9c2;
+    border: none;
+    border-radius: 5px;
+    padding: 2px 5px;
+    margin: 0 2px;
+    cursor: pointer;
+    color: white;
+    transition: filter 0.2s;
+    height: auto;
+}
+
 #inventory, .shop1, .inventory1 {
   position: absolute;
   top: 150;
@@ -189,16 +194,29 @@ button:hover {
    margin: 10px;
    display: none;
 }
+.snowflake {
+      position: fixed;
+      top: -50px;
+      font-size: 1.5rem;
+      color: rgb(17, 176, 204);
+      opacity: 0.8;
+      pointer-events: none;
+      animation-timing-function: linear;
+    }
 </style>
 </head>
 <body>
 <div id="message-container"></div>
 <div id="coin"> 🥥0</div>
-<lucky class="clickc" id="upgradeButton">Прокачать клик (*1.1 клик)</lucky>
+<lucky class="clickc" id="upgradeButton">Прокачать клик (+0.1 монета)</lucky>
 <div id="upgradeInfo">Стоимость прокачки: 100 монет</div>
 
 <button class="clickc" id="upgradeButton2">Прокачать удачу (x2 удачи)</button>
-<div id="upgradeInfo2">Стоимость прокачки: 100 монет</div>
+<div id="upgradeInfo2">Стоимость прокачки: 500 монет</div>
+
+<button class="clickc" id="upgradeButton3">Сделать прокачку дешевле</button>
+<div id="upgradeInfo3">Стоимость прокачки: 1000 монет</div>
+
 
 <div class="container228">
   <div class="button228" onclick="toggleMiniButtons(this)">
@@ -254,8 +272,25 @@ localStorage.setItem('coinCount', coinCount);
 localStorage.setItem('clickValue', clickValue);
 localStorage.setItem('upgradePrice', upgradePrice);    // Сохраняем цену прокачки
 localStorage.setItem('upgradePrice2', upgradePrice2); // Сохраняем цену прокачки
+localStorage.setItem('upgradePrice3', upgradePrice3); // Сохраняем цену прокачки
+localStorage.setItem('c', c); // Сохраняем цену прокачки
 localStorage.setItem('skinbuying1', skinbuying1);
 localStorage.setItem('items', JSON.stringify(items));
+localStorage.setItem('isFirstUpgrade', isFirstUpgrade); // Сохраняем флаг первой прокачки
+
+  // Сохранение автофермы
+  localStorage.setItem('farmUpgradePrice', farmUpgradePrice); // Сохраняем цену прокачки
+  localStorage.setItem('farmCoins', farmCoins); // Сохраняем монеты автофермы
+  localStorage.setItem('farmSpeed', farmSpeed); // Сохраняем текущую скорость
+  localStorage.setItem('minFarmSpeed', minFarmSpeed); // Сохраняем минимальную скорость
+  localStorage.setItem('farmSpeedUpgrade', farmSpeedUpgrade); // Сохраняем шаг улучшения скорости
+
+
+    // Сохраняем количество монет в секунду (рассчитывается как farmCoins / farmSpeed)
+  const coinsPerSecond = (farmCoins / farmSpeed).toFixed(2); // Округляем до 2 знаков
+  localStorage.setItem('coinsPerSecond', coinsPerSecond);
+
+
 }
 
 function loadCoins() {
@@ -263,6 +298,8 @@ coinCount = parseFloat(localStorage.getItem('coinCount')) || 0;
 clickValue = parseFloat(localStorage.getItem('clickValue')) || 1;
 upgradePrice = parseInt(localStorage.getItem('upgradePrice')) || 100; // Загружаем цену прокачки
 upgradePrice2 = parseInt(localStorage.getItem('upgradePrice2')) || 500; // Загружаем цену второй прокачки
+upgradePrice3 = parseInt(localStorage.getItem('upgradePrice3')) || 1000; // Загружаем цену второй прокачки
+c = parseInt(localStorage.getItem('c')) || 9; // Загружаем цену второй прокачки
 codeUsed1 = localStorage.getItem('codeUsed1') === 'true' || false;
 codeUsed2 = localStorage.getItem('codeUsed2') === 'true' || false;
 codeUsed3 = localStorage.getItem('codeUsed3') === 'true' || false;
@@ -271,56 +308,159 @@ codeUsed5 = localStorage.getItem('codeUsed5') === 'true' || false;
 codeUsed6 = localStorage.getItem('codeUsed6') === 'true' || false;
 codeUsed7 = localStorage.getItem('codeUsed7') === 'true' || false;
 skinbuying = localStorage.getItem('codeUsed7') === 'true' || false;
-localStorage.setItem('skinbuying', skinbuying);coinDisplay.textContent = `🥥${coinCount.toFixed(0)}`;
+localStorage.setItem('skinbuying', skinbuying);
+coinDisplay.textContent = `🥥${coinCount.toFixed(0)}`;
 upgradeInfoDisplay.textContent = `Стоимость прокачки: ${upgradePrice} 🥥`;
 upgradeInfoDisplay2.textContent = `Стоимость прокачки: ${upgradePrice2} 🥥`;
+upgradeInfoDisplay3.textContent = `Стоимость прокачки: ${upgradePrice3} 🥥`;
 const storedItems = localStorage.getItem('items');
 return storedItems ? JSON.parse(storedItems) : [];
+  // Загрузка данных автофермы
+  farmUpgradePrice = parseFloat(localStorage.getItem('farmUpgradePrice')) || 50;
+  farmCoins = parseInt(localStorage.getItem('farmCoins')) || 1;
+  farmSpeed = parseFloat(localStorage.getItem('farmSpeed')) || 1;
+  minFarmSpeed = parseFloat(localStorage.getItem('minFarmSpeed')) || 0.3;
+  farmSpeedUpgrade = parseFloat(localStorage.getItem('farmSpeedUpgrade')) || 0.05;
+  farmUpgradeInfoDisplay.textContent = `Стоимость прокачки автофермы: ${farmUpgradePrice.toFixed(0)} 🥥`;
+
+
+
+
+// Обновление отображения монет в секунду
+const coinsPerSecond = (farmCoins / farmSpeed).toFixed(2); // Пересчитываем на основе данных
+  localStorage.setItem('coinsPerSecond', coinsPerSecond);
+
 }
+
+// Вызов loadCoins при загрузке игры
+document.addEventListener('DOMContentLoaded', () => {
+  loadCoins();
+  updateFarmInterval(); // Устанавливаем интервал автофермы
+});
+
 let coinCount = 0;
 let clickValue = 1;
 let upgradePrice = 100;
-let upgradePrice2 = 100;
+let upgradePrice2 = 500;
+let upgradePrice3 = 1000;
 let rare =      0.01;
 let epic =      0.001;
 let mythic =    0.0001;
 let legendary = 0.00001;
 let secret =    0.000001;
+let PRICEPRO = 1.5;
+let c = 4;
+
+// Прокачка автофермы
+let farmCoins = 1;                // Монеты, генерируемые автофермой
+let farmSpeed = 1;                // Скорость автофермы (интервал в секундах)
+let farmUpgradePrice = 50;        // Цена прокачки автофермы
+let minFarmSpeed = 0.3;           // Минимальная скорость автофермы
+let farmSpeedUpgrade = 0.05;      // Уменьшение скорости за одну прокачку
+
+
 const coinDisplay = document.getElementById('coin');
 const coinImage = document.getElementById('coinImage');
 const themeButton = document.getElementById('themeButton');
 const upgradeButton = document.getElementById('upgradeButton');
 const upgradeButton2 = document.getElementById('upgradeButton2');
+const upgradeButton3 = document.getElementById('upgradeButton3');
 const upgradeInfoDisplay = document.getElementById('upgradeInfo');
 const upgradeInfoDisplay2 = document.getElementById('upgradeInfo2');
+const upgradeInfoDisplay3 = document.getElementById('upgradeInfo3');
 const luckLevelDisplay = document.getElementById('luckLevel');
 let luckLevel = parseInt(localStorage.getItem('luckLevel')) || 1;
+let isFirstUpgrade = true;
 loadCoins();
 
 upgradeButton.addEventListener('click', () => {
   if (coinCount >= upgradePrice) {
     coinCount -= upgradePrice;
     clickValue *= 1.1;
-    upgradePrice *= 1.3;
+    upgradePrice *= PRICEPRO;
     coinDisplay.textContent = `🥥${coinCount.toFixed(0)}`;
     upgradeInfoDisplay.textContent = `Стоимость прокачки: ${upgradePrice.toFixed(0)} 🥥`;
     saveCoins();
   }
 });
-
+loadCoins();
 upgradeButton2.addEventListener('click', () => {
   if (coinCount >= upgradePrice2) {
     coinCount -= upgradePrice2;
     luckLevel *= 2;
-    upgradePrice2 *= 1.3;
+    upgradePrice2 *= PRICEPRO;
+
     coinDisplay.textContent = `🥥${coinCount.toFixed(0)}`;
     upgradeInfoDisplay2.textContent = `Стоимость прокачки: ${upgradePrice2.toFixed(0)} 🥥`;
     saveCoins();
   }
 });
+loadCoins();
+upgradeButton3.addEventListener('click', () => {
+  if (coinCount >= upgradePrice3){
+    if (c > 0) {
+      coinCount -= upgradePrice3;
+      PRICEPRO -= 0.05;
+      upgradePrice3 *= PRICEPRO;
+      coinDisplay.textContent = `🥥${coinCount.toFixed(0)}`;
+      upgradeInfoDisplay3.textContent = `Стоимость прокачки: ${upgradePrice3.toFixed(0)} 🥥`;
+      c -= 1;
+      saveCoins();
+      }
+  }
+});
 
 
+const createSnowflake = () => {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.innerHTML = '❄';
 
+      const size = Math.random() * 20 + 10; // Размер снежинки
+      snowflake.style.fontSize = `${size}px`;
+
+      // Позиция появления снежинки
+      snowflake.style.left = `${Math.random() * window.innerWidth}px`;
+
+      // Длительность анимации (ускоряем падение)
+      const fallDuration = Math.random() * 3 + 2; // 2-5 секунд
+      const swayAmplitude = Math.random() * 100 - 50; // Покачивание (влево/вправо)
+
+      // Задание анимации с комбинированным движением вниз и покачиванием
+      snowflake.style.animation = `
+        fall ${fallDuration}s linear,
+        sway ${fallDuration}s ease-in-out infinite
+      `;
+      snowflake.style.animationName = 'falling';
+
+      // Добавляем снежинку в DOM
+      document.body.appendChild(snowflake);
+
+      // Удаление снежинки после завершения её пути
+      setTimeout(() => snowflake.remove(), fallDuration * 1000);
+    };
+
+    // CSS для анимации
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes falling {
+        from {
+          transform: translateY(-50px) translateX(0);
+        }
+        to {
+          transform: translateY(100vh) translateX(${Math.random() * 100 - 50}px);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Создание снежинок каждые 300 мс
+    setInterval(createSnowflake, 300);
+
+document.getElementById('menu').addEventListener('click', function() {
+        // Замените URL ниже на нужный Вам адрес
+        window.location.href = 'http://127.0.0.1:5500/index.html';
+});
 function toggleMiniButtons(button228) {
         // Убираем мини-кнопки от всех кнопок
         document.querySelectorAll('.button228.active').forEach(function(b) {
@@ -334,10 +474,9 @@ function toggleMiniButtons(button228) {
         miniButtons.style.display = miniButtons.style.display === 'none' ? 'flex' : 'none';
         button228.classList.toggle('active');
 }
-document.getElementById('menu').addEventListener('click', function() {
-        // Замените URL ниже на нужный Вам адрес
-        window.location.href = 'https://suspect147.github.io/CoconutClickerTelegram/';
-});
+// Начальный запуск автофермы
+let farmInterval = setInterval(farmCoinGeneration, farmSpeed * 1000);
+saveCoins();
 
 </script>
 </body>
