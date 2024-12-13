@@ -276,21 +276,6 @@ localStorage.setItem('upgradePrice3', upgradePrice3); // Сохраняем це
 localStorage.setItem('c', c); // Сохраняем цену прокачки
 localStorage.setItem('skinbuying1', skinbuying1);
 localStorage.setItem('items', JSON.stringify(items));
-localStorage.setItem('isFirstUpgrade', isFirstUpgrade); // Сохраняем флаг первой прокачки
-
-  // Сохранение автофермы
-  localStorage.setItem('farmUpgradePrice', farmUpgradePrice); // Сохраняем цену прокачки
-  localStorage.setItem('farmCoins', farmCoins); // Сохраняем монеты автофермы
-  localStorage.setItem('farmSpeed', farmSpeed); // Сохраняем текущую скорость
-  localStorage.setItem('minFarmSpeed', minFarmSpeed); // Сохраняем минимальную скорость
-  localStorage.setItem('farmSpeedUpgrade', farmSpeedUpgrade); // Сохраняем шаг улучшения скорости
-
-
-    // Сохраняем количество монет в секунду (рассчитывается как farmCoins / farmSpeed)
-  const coinsPerSecond = (farmCoins / farmSpeed).toFixed(2); // Округляем до 2 знаков
-  localStorage.setItem('coinsPerSecond', coinsPerSecond);
-
-
 }
 
 function loadCoins() {
@@ -299,7 +284,6 @@ clickValue = parseFloat(localStorage.getItem('clickValue')) || 1;
 upgradePrice = parseInt(localStorage.getItem('upgradePrice')) || 100; // Загружаем цену прокачки
 upgradePrice2 = parseInt(localStorage.getItem('upgradePrice2')) || 500; // Загружаем цену второй прокачки
 upgradePrice3 = parseInt(localStorage.getItem('upgradePrice3')) || 1000; // Загружаем цену второй прокачки
-c = parseInt(localStorage.getItem('c')) || 9; // Загружаем цену второй прокачки
 codeUsed1 = localStorage.getItem('codeUsed1') === 'true' || false;
 codeUsed2 = localStorage.getItem('codeUsed2') === 'true' || false;
 codeUsed3 = localStorage.getItem('codeUsed3') === 'true' || false;
@@ -315,28 +299,8 @@ upgradeInfoDisplay2.textContent = `Стоимость прокачки: ${upgrad
 upgradeInfoDisplay3.textContent = `Стоимость прокачки: ${upgradePrice3} 🥥`;
 const storedItems = localStorage.getItem('items');
 return storedItems ? JSON.parse(storedItems) : [];
-  // Загрузка данных автофермы
-  farmUpgradePrice = parseFloat(localStorage.getItem('farmUpgradePrice')) || 50;
-  farmCoins = parseInt(localStorage.getItem('farmCoins')) || 1;
-  farmSpeed = parseFloat(localStorage.getItem('farmSpeed')) || 1;
-  minFarmSpeed = parseFloat(localStorage.getItem('minFarmSpeed')) || 0.3;
-  farmSpeedUpgrade = parseFloat(localStorage.getItem('farmSpeedUpgrade')) || 0.05;
-  farmUpgradeInfoDisplay.textContent = `Стоимость прокачки автофермы: ${farmUpgradePrice.toFixed(0)} 🥥`;
 
-
-
-
-// Обновление отображения монет в секунду
-const coinsPerSecond = (farmCoins / farmSpeed).toFixed(2); // Пересчитываем на основе данных
-  localStorage.setItem('coinsPerSecond', coinsPerSecond);
-
-}
-
-// Вызов loadCoins при загрузке игры
-document.addEventListener('DOMContentLoaded', () => {
-  loadCoins();
-  updateFarmInterval(); // Устанавливаем интервал автофермы
-});
+};
 
 let coinCount = 0;
 let clickValue = 1;
@@ -351,14 +315,6 @@ let secret =    0.000001;
 let PRICEPRO = 1.5;
 let c = 4;
 
-// Прокачка автофермы
-let farmCoins = 1;                // Монеты, генерируемые автофермой
-let farmSpeed = 1;                // Скорость автофермы (интервал в секундах)
-let farmUpgradePrice = 50;        // Цена прокачки автофермы
-let minFarmSpeed = 0.3;           // Минимальная скорость автофермы
-let farmSpeedUpgrade = 0.05;      // Уменьшение скорости за одну прокачку
-
-
 const coinDisplay = document.getElementById('coin');
 const coinImage = document.getElementById('coinImage');
 const themeButton = document.getElementById('themeButton');
@@ -370,7 +326,6 @@ const upgradeInfoDisplay2 = document.getElementById('upgradeInfo2');
 const upgradeInfoDisplay3 = document.getElementById('upgradeInfo3');
 const luckLevelDisplay = document.getElementById('luckLevel');
 let luckLevel = parseInt(localStorage.getItem('luckLevel')) || 1;
-let isFirstUpgrade = true;
 loadCoins();
 
 upgradeButton.addEventListener('click', () => {
